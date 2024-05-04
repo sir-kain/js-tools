@@ -1,0 +1,12 @@
+{
+  "name": "js-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "minify": "node builder.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2"
+  }
+}
