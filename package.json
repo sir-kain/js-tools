@@ -3,10 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "minify": "node builder.mjs"
+    "minify": "node minify/builder.js",
+    "purgecss": "node minify/purge.js",
+    "bundle": "rollup --config bundling/rollup.config.js",
+    "tree-shaking": "parcel tree-shaking/src/index.html --out-dir tree-shaking/dist"
   },
   "devDependencies": {
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.21.4",
+    "parcel-bundler": "^1.12.5",
+    "purgecss": "^6.0.0",
+    "rollup": "^4.18.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "dayjs": "^1.11.11",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1"
   }
 }

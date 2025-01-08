@@ -1,3 +1,6 @@
+import { $, $$, createNode, append } from "./utils/index.js";
+// import { hello, hello2 } from "./utils/hello.js";
+
 const names = [
   "Ahmadou Waly Ndiaye",
   "Adji Fatma Mbacke Thioune",
@@ -8,35 +11,17 @@ const names = [
   "Inno",
 ];
 
-function $(selector) {
-  return document.querySelector(selector);
-}
-
-function $$(selector) {
-  return document.querySelectorAll(selector);
-}
-
-function createNode(element) {
-  return document.createElement(element);
-}
-
-function append(parent, el) {
-  parent.insertAdjacentElement("beforeend", el);
-}
-
-function nameInitals(names) {
+const onlyInitial = (names) => {
   return names.map((fullname) => {
     return fullname.split(" ").map((name) => name.charAt(0));
   });
-}
+};
 
-function maxInitialNumber(initials, n) {
-  return initials.map((inital) => inital.slice(0, n));
-}
+const limit = (arr, n) => {
+  return arr.map((inital) => inital.slice(0, n));
+};
 
-// $(".names pre").innerHTML = JSON.stringify(names);
-
-function item(initials) {
+function generateAvatar(initials) {
   const $item = createNode("article");
   $item.classList.add("item");
   $item.style.background =
@@ -50,13 +35,21 @@ function item(initials) {
   return $item;
 }
 
-function items(initialList) {
+function render(initialList) {
   const $items = $(".items");
+  console.log('$items ==>', $items);
   initialList.forEach((initials) => {
-    const $item = item(initials);
+    const $item = generateAvatar(initials);
     append($items, $item);
   });
 }
 
-const initialList = maxInitialNumber(nameInitals(names), 3);
-items(initialList);
+document.addEventListener("DOMContentLoaded", () => {
+  const initialList = limit(onlyInitial(names), 3);
+  render(initialList);
+
+  $("h1").addEventListener("click", async () => {
+    const { hello } = await import("./utils/hello.js");
+    console.log(hello("waly"));
+  });
+});
