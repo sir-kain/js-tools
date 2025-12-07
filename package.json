@@ -7,13 +7,14 @@
   "scripts": {
     "minify": "node minify/builder.js",
     "purgecss": "node minify/purge.js",
-    "bundle": "rollup --config bundling/rollup.config.js",
+    "bundle": "./node_modules/rollup/dist/bin/rollup --config bundling/rollup.config.js",
     "tree-shaking": "parcel tree-shaking/src/index.html --out-dir tree-shaking/dist"
   },
   "devDependencies": {
     "esbuild": "^0.21.4",
     "parcel-bundler": "^1.12.5",
     "purgecss": "^6.0.0",
+    "rolldown": "^1.0.0-beta.33",
     "rollup": "^4.18.0"
   },
   "dependencies": {

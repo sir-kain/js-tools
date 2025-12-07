@@ -1,5 +1,5 @@
 import { $, $$, createNode, append } from "./utils/index.js";
-// import { hello, hello2 } from "./utils/hello.js";
+import { hello } from "./utils/hello.js";
 
 const names = [
   "Ahmadou Waly Ndiaye",
@@ -24,20 +24,24 @@ const limit = (arr, n) => {
 function generateAvatar(initials) {
   const $item = createNode("article");
   $item.classList.add("item");
-  $item.style.background =
-    "#" + Math.floor(Math.random() * 16777215).toString(16);
+  const color = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  $item.style.background = color;
   initials.forEach((initial) => {
     const $span = createNode("span");
     $span.textContent = initial;
     append($item, $span);
   });
 
+  $item.addEventListener("click", async () => {
+    // const { hello } = await import("./utils/hello.js");
+    console.log(hello(color));
+    $('body').style.background = color;
+  });
   return $item;
 }
 
 function render(initialList) {
   const $items = $(".items");
-  console.log('$items ==>', $items);
   initialList.forEach((initials) => {
     const $item = generateAvatar(initials);
     append($items, $item);
@@ -47,9 +51,17 @@ function render(initialList) {
 document.addEventListener("DOMContentLoaded", () => {
   const initialList = limit(onlyInitial(names), 3);
   render(initialList);
-
-  $("h1").addEventListener("click", async () => {
-    const { hello } = await import("./utils/hello.js");
-    console.log(hello("waly"));
-  });
 });
+
+export function add(firstNumber, secondNumber) {
+  return firstNumber + secondNumber;
+}
+
+// Recursivitiy
+export function factorial(number) {
+  if (number === 0) {
+    return 1;
+  }
+
+  return number * factorial(number - 1);
+}

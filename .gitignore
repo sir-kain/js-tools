@@ -3,3 +3,4 @@ dist
 minify/dist
 .parcel-cache
 .cache
+introduction.md
